@@ -32,7 +32,6 @@ jobs:
           phpunit-versions: '8.5.21'
 
     steps:
-      - name: Set up PHP ${{ matrix.php-versions }}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
@@ -41,8 +40,8 @@ jobs:
           coverage: xdebug
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
       #- name: Integrations Test
-      #  run: | 
-      #    ./vendor/bin/phpunit tests
+       run: | 
+              ./vendor/bin/phpunit tests
 
 
  #deploy:

@@ -41,20 +41,20 @@ jobs:
       - name: Rodando Testes Unitarios 
         run: phpunit tests
 
- # deploy:
- #  needs: tests
- #  runs-on: ubuntu-latest
+  deploy:
+   needs: tests
+   runs-on: ubuntu-latest
 
- #  steps:
- #    - uses: actions/checkout@v2
+   steps:
+     - uses: actions/checkout@v2
 
- #    - name: Set up PHP 8
- #      uses: shivammathur/setup-php@v2
- #      with:
- #        php-version: '8.0'
- #        extensions: mbstring, intl
- #        ini-values: post_max_size=256M, max_execution_time=180
- #        tools: php-cs-fixer, phpunit
+     - name: Set up PHP 8
+       uses: shivammathur/setup-php@v2
+       with:
+         php-version: '8.0'
+         extensions: mbstring, intl
+         ini-values: post_max_size=256M, max_execution_time=180
+         tools: php-cs-fixer, phpunit
 
  #    - name: deploy into heroku
  #      uses: akhileshns/heroku-deploy@v3.12.12

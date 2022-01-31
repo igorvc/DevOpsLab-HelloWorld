@@ -1,16 +1,11 @@
 # https://github.com/marketplace/actions/setup-php-action
 name: CI - PHP / Tests / Deploy
-
 on: [push]
-
 jobs:
-
   lint:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-
       - name: Set up PHP 8
         uses: shivammathur/setup-php@v2
         with:
@@ -18,7 +13,6 @@ jobs:
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           tools: php-cs-fixer, phpunit
-
   tests:
     needs: lint
     runs-on: ubuntu-latest
@@ -26,15 +20,11 @@ jobs:
       matrix:
         php-versions: ['7.4', '8.0', '8.1']
         phpunit-versions: ['latest']
-      include:
+        include:
         - operating-system: 'ubuntu-latest'
           php-versions: '7.2'
           phpunit-versions: '8.5.21'
-
     steps:
-      #- uses: actions/checkout@v2
-
-      #- name: Set up PHP ${{ matrix.php-versions }}  
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
@@ -42,28 +32,3 @@ jobs:
           ini-values: post_max_size=256M, max_execution_time=180
           coverage: xdebug
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
-      
-      #- name: Integrations Test
-       #run: | 
-        #     ./vendor/bin/phpunit tests
-
-
-
- #deploy:
- #  needs: tests
- #  runs-on: ubuntu-latest
-
- #  steps:
- #    - uses: actions/checkout@v2
-
- #    - name: Set up Python 3.9
- #      uses: actions/setup-python@v2
- #      with:
- #        python-version: 3.9
-
- #    - name: deploy into heroku
- #      uses: akhileshns/heroku-deploy@v3.12.12
- #      with:
- #        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
- #        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
- #        heroku_email: ${{secrets.HEROKU_USER_EMAIL}}

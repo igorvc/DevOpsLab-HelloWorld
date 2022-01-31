@@ -26,13 +26,15 @@ jobs:
       matrix:
         php-versions: ['7.4', '8.0', '8.1']
         phpunit-versions: ['latest']
-        include:
-        - operating-system: 'ubuntu-latest'
-          php-versions: '7.2'
-          phpunit-versions: '8.5.21'
+      #include:
+       # - operating-system: 'ubuntu-latest'
+       #   php-versions: '7.2'
+       #   phpunit-versions: '8.5.21'
 
     steps:
-      - name: Preparando testes
+      - uses: actions/checkout@v2
+
+      - name: Set up PHP ${{ matrix.php-versions }}  
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
@@ -40,9 +42,10 @@ jobs:
           ini-values: post_max_size=256M, max_execution_time=180
           coverage: xdebug
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
-      #- name: Integrations Test
-       #run: | 
-       #       ./vendor/bin/phpunit tests
+      
+      - name: Integrations Test
+       run: | 
+             ./vendor/bin/phpunit tests
 
 
 

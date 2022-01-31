@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<title>Cafe</title>
+<title>Cafe V2</title>
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="600">
 <head>

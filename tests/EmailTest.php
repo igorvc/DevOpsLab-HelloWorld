@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-require "./src/Email.php";
+require "./vendor/autoload.php";
 
 use PHPUnit\Framework\TestCase;
 

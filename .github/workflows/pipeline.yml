@@ -36,5 +36,7 @@ jobs:
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
 
       - uses: graychen/phpunit-action@v1.0.0
+        with:
+          config: tests/phpunit.xml
 
       - run: phpunit tests

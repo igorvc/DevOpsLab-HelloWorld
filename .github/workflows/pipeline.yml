@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up PHP ${{ matrix.php-versions }}  
+      #- name: Set up PHP ${{ matrix.php-versions }}  
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
@@ -43,9 +43,9 @@ jobs:
           coverage: xdebug
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
       
-      - name: Integrations Test
-       run: | 
-             ./vendor/bin/phpunit tests
+      #- name: Integrations Test
+       #run: | 
+        #     ./vendor/bin/phpunit tests
 
 
 

@@ -56,9 +56,9 @@ jobs:
          ini-values: post_max_size=256M, max_execution_time=180
          tools: php-cs-fixer, phpunit
 
- #    - name: deploy into heroku
- #      uses: akhileshns/heroku-deploy@v3.12.12
- #      with:
- #        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
- #        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
- #        heroku_email: ${{secrets.HEROKU_USER_EMAIL}}
+     - name: deploy into heroku
+       uses: akhileshns/heroku-deploy@v3.12.12
+       with:
+         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+         heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+         heroku_email: ${{secrets.HEROKU_USER_EMAIL}}

@@ -35,8 +35,14 @@ jobs:
           coverage: xdebug
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
 
-      - uses: graychen/phpunit-action@v1.0.0
+      # Não tá funcionando
+      #- uses: graychen/phpunit-action@v1.0.0
+      #  with:
+      #    config: ./tests/phpunit/phpunit.xml
+
+      - uses: pxgamer/phpunit-action@master
         with:
-          config: ./tests/phpunit/phpunit.xml
+          # If there isn't a PHPUnit config, specify files or directories to test
+          command: tests/
 
       - run: phpunit tests

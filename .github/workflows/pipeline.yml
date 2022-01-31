@@ -34,3 +34,5 @@ jobs:
           ini-values: post_max_size=256M, max_execution_time=180
           coverage: xdebug
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
+
+        - run: ./vendor/bin/phpunit tests

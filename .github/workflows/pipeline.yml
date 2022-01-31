@@ -35,4 +35,4 @@ jobs:
           coverage: xdebug
           tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
 
-        #- run: ./vendor/bin/phpunit tests
+        - run: phpunit tests

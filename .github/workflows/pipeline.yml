@@ -38,15 +38,27 @@ jobs:
       - name: Install dependencies
         uses: php-actions/composer@v6   
 
-      # Não tá funcionando
-      #- uses: graychen/phpunit-action@v1.0.0
-      #  with:
-      #    config: ./tests/phpunit/phpunit.xml
-
-    # Não tá funcionando
-      #- uses: pxgamer/phpunit-action@master
-      #  with:
-          # If there isn't a PHPUnit config, specify files or directories to test
-      #    command: tests/
       - name: Rodando Testes Unitarios 
         run: phpunit tests
+
+ deploy:
+    needs: tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up PHP 8
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, max_execution_time=180
+          tools: php-cs-fixer, phpunit
+
+      - name: deploy into heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_USER_EMAIL}}
